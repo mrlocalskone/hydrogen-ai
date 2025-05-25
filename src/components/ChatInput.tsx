@@ -86,11 +86,7 @@ export const ChatInput: React.FC = () => {
       if (messageText.startsWith('/web ')) {
         const query = messageText.replace('/web ', '').trim();
         if (query) {
-          setActiveAtom({ 
-            type: 'web-search' as const, 
-            params: { query },
-            isVisible: true 
-          });
+          setActiveAtom('websearch', query);
           return;
         }
       }
@@ -98,11 +94,7 @@ export const ChatInput: React.FC = () => {
       if (messageText.startsWith('/youtube ')) {
         const url = messageText.replace('/youtube ', '').trim();
         if (url) {
-          setActiveAtom({ 
-            type: 'youtube-summarizer' as const, 
-            params: { url },
-            isVisible: true 
-          });
+          setActiveAtom('youtube', url);
           return;
         }
       }
@@ -110,11 +102,7 @@ export const ChatInput: React.FC = () => {
       if (messageText.startsWith('/flashcard ')) {
         const topic = messageText.replace('/flashcard ', '').trim();
         if (topic) {
-          setActiveAtom({ 
-            type: 'flashcard-maker' as const, 
-            params: { topic },
-            isVisible: true 
-          });
+          setActiveAtom('flashcard', topic);
           return;
         }
       }
@@ -122,11 +110,7 @@ export const ChatInput: React.FC = () => {
       if (messageText.startsWith('/summarize ')) {
         const content = messageText.replace('/summarize ', '').trim();
         if (content) {
-          setActiveAtom({ 
-            type: 'ai-summarizer' as const, 
-            params: { content },
-            isVisible: true 
-          });
+          setActiveAtom('summarize', content);
           return;
         }
       }
@@ -191,7 +175,7 @@ export const ChatInput: React.FC = () => {
   return (
     <div className={cn(
       "border-t border-white/10 light:border-black/10 bg-background/95 backdrop-blur-md",
-      isMobile ? "p-4 safe-bottom" : "p-6"
+      isMobile ? "p-4 pb-safe-bottom" : "p-6"
     )}>
       {/* File attachments preview */}
       {attachedFiles.length > 0 && (
@@ -264,8 +248,7 @@ export const ChatInput: React.FC = () => {
 
           {/* Voice input button */}
           <AIVoiceInput
-            onResult={handleVoiceResult}
-            onListeningChange={setIsListening}
+            onTextCapture={handleVoiceResult}
             className={cn(
               "shrink-0 touch-target",
               isMobile && "h-8 w-8"
