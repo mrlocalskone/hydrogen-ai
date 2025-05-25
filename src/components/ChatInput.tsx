@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, Mic, MicOff, Paperclip, Sparkles } from "lucide-react";
 import { useChat } from "@/context/ChatContext";
 import { cn } from "@/lib/utils";
-import { VoiceInput } from "@/components/ui/ai-voice-input";
+import { AIVoiceInput } from "@/components/ui/ai-voice-input";
 import { toast } from "@/components/ui/use-toast";
 
 // Hook to detect mobile devices
@@ -37,7 +37,6 @@ export const ChatInput: React.FC = () => {
   
   const { 
     sendMessage, 
-    isLoading, 
     conversations, 
     currentConversationId,
     createNewConversation,
@@ -69,7 +68,7 @@ export const ChatInput: React.FC = () => {
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
     
-    if ((!input.trim() && attachedFiles.length === 0) || isLoading) return;
+    if (!input.trim() && attachedFiles.length === 0) return;
 
     const messageText = input.trim();
     
@@ -88,7 +87,7 @@ export const ChatInput: React.FC = () => {
         const query = messageText.replace('/web ', '').trim();
         if (query) {
           setActiveAtom({ 
-            type: 'web-search', 
+            type: 'web-search' as const, 
             params: { query },
             isVisible: true 
           });
@@ -100,7 +99,7 @@ export const ChatInput: React.FC = () => {
         const url = messageText.replace('/youtube ', '').trim();
         if (url) {
           setActiveAtom({ 
-            type: 'youtube-summarizer', 
+            type: 'youtube-summarizer' as const, 
             params: { url },
             isVisible: true 
           });
@@ -112,7 +111,7 @@ export const ChatInput: React.FC = () => {
         const topic = messageText.replace('/flashcard ', '').trim();
         if (topic) {
           setActiveAtom({ 
-            type: 'flashcard-maker', 
+            type: 'flashcard-maker' as const, 
             params: { topic },
             isVisible: true 
           });
@@ -124,7 +123,7 @@ export const ChatInput: React.FC = () => {
         const content = messageText.replace('/summarize ', '').trim();
         if (content) {
           setActiveAtom({ 
-            type: 'ai-summarizer', 
+            type: 'ai-summarizer' as const, 
             params: { content },
             isVisible: true 
           });
@@ -133,7 +132,7 @@ export const ChatInput: React.FC = () => {
       }
 
       // Send regular message
-      await sendMessage(messageText, attachedFiles);
+      await sendMessage(messageText);
       
     } catch (error) {
       console.error('Error sending message:', error);
@@ -185,7 +184,6 @@ export const ChatInput: React.FC = () => {
   };
 
   const getSendButtonText = () => {
-    if (isLoading) return isMobile ? '' : 'Sending...';
     if (isMobile && input.trim()) return '';
     return isMobile ? '' : 'Send';
   };
@@ -237,7 +235,6 @@ export const ChatInput: React.FC = () => {
               "text-muted-foreground hover:text-foreground",
               isMobile && "h-8 w-8"
             )}
-            disabled={isLoading}
           >
             <Paperclip className={cn("w-4 h-4", isMobile && "w-3.5 h-3.5")} />
           </Button>
@@ -259,7 +256,6 @@ export const ChatInput: React.FC = () => {
               "scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent",
               isMobile && "text-base leading-5 py-2" // Prevent zoom on iOS
             )}
-            disabled={isLoading}
             rows={1}
             style={{ 
               fontSize: isMobile ? '16px' : '14px' // Prevent zoom on iOS
@@ -267,21 +263,20 @@ export const ChatInput: React.FC = () => {
           />
 
           {/* Voice input button */}
-          <VoiceInput
+          <AIVoiceInput
             onResult={handleVoiceResult}
             onListeningChange={setIsListening}
             className={cn(
               "shrink-0 touch-target",
               isMobile && "h-8 w-8"
             )}
-            disabled={isLoading}
           />
 
           {/* Send button */}
           <Button
             type="submit"
             size={isMobile ? "sm" : "icon"}
-            disabled={(!input.trim() && attachedFiles.length === 0) || isLoading}
+            disabled={!input.trim() && attachedFiles.length === 0}
             className={cn(
               "shrink-0 touch-target",
               "bg-primary hover:bg-primary/90 text-primary-foreground",
@@ -290,15 +285,9 @@ export const ChatInput: React.FC = () => {
               isMobile && "h-8 w-8 min-w-[32px]"
             )}
           >
-            {isLoading ? (
-              <div className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" />
-            ) : (
-              <>
-                <Send className={cn("w-4 h-4", isMobile && "w-3.5 h-3.5")} />
-                {!isMobile && getSendButtonText() && (
-                  <span className="ml-2">{getSendButtonText()}</span>
-                )}
-              </>
+            <Send className={cn("w-4 h-4", isMobile && "w-3.5 h-3.5")} />
+            {!isMobile && getSendButtonText() && (
+              <span className="ml-2">{getSendButtonText()}</span>
             )}
           </Button>
         </div>

@@ -199,9 +199,6 @@ export function Sidebar({ collapsed: collapsedProp = false }: SidebarProps) {
         setSearchTerm={setSearchTerm}
         handleSearchKeyDown={handleSearchKeyDown}
         createNewConversation={createNewConversation}
-        className={cn(
-          isMobile && "mobile-nav safe-top"
-        )}
       />
       
       <div className={cn(
@@ -232,9 +229,6 @@ export function Sidebar({ collapsed: collapsedProp = false }: SidebarProps) {
             setEditTitle={setEditTitle}
             handleDeleteClick={handleDeleteClick}
             handleRegenerateTitle={handleRegenerateTitle}
-            className={cn(
-              isMobile && "conversation-list-mobile"
-            )}
           />
         )}
       </div>
@@ -242,9 +236,6 @@ export function Sidebar({ collapsed: collapsedProp = false }: SidebarProps) {
       <SidebarFooter 
         currentConversationId={currentConversationId}
         clearConversation={clearConversation}
-        className={cn(
-          isMobile && "safe-bottom p-4"
-        )}
       />
       
       <DeleteDialog 
