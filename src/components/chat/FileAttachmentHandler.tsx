@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Paperclip } from "lucide-react";
+import { Paperclip, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FileAttachmentHandlerProps {
@@ -34,44 +34,67 @@ export const FileAttachmentHandler: React.FC<FileAttachmentHandlerProps> = ({
 
   return (
     <>
-      {/* File attachments preview */}
+      {/* Animated file attachments preview */}
       {attachedFiles.length > 0 && (
         <div className={cn(
-          "flex flex-wrap gap-2 mb-3",
+          "flex flex-wrap gap-2 mb-4 animate-fade-in",
           isMobile && "text-sm"
         )}>
           {attachedFiles.map((file, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 bg-accent/20 px-3 py-1 rounded-lg border border-border"
+              className={cn(
+                "group flex items-center gap-2 px-3 py-2 rounded-lg",
+                "bg-gradient-to-r from-accent/20 to-accent/10",
+                "border border-border/50 hover:border-border",
+                "transition-all duration-300 hover:scale-105",
+                "hover:shadow-md animate-scale-in"
+              )}
             >
-              <Paperclip className="w-3 h-3" />
-              <span className="text-xs truncate max-w-[100px]">{file.name}</span>
+              <Paperclip className="w-3 h-3 text-primary animate-bounce" />
+              <span className="text-xs font-medium truncate max-w-[120px]">
+                {file.name}
+              </span>
               <button
                 onClick={() => onRemoveFile(index)}
-                className="text-muted-foreground hover:text-foreground text-xs"
+                className={cn(
+                  "text-muted-foreground hover:text-destructive",
+                  "transition-all duration-200 hover:scale-110",
+                  "rounded-full p-0.5 hover:bg-destructive/10"
+                )}
               >
-                ×
+                <X className="w-3 h-3" />
               </button>
             </div>
           ))}
         </div>
       )}
 
-      {/* Attachment button */}
+      {/* Enhanced attachment button */}
       <Button
         type="button"
         variant="ghost"
         size={isMobile ? "sm" : "icon"}
         onClick={handleFileAttachment}
         className={cn(
-          "shrink-0 touch-target",
-          "text-muted-foreground hover:text-foreground",
+          "relative overflow-hidden group",
+          "hover:bg-primary/10 hover:text-primary",
+          "transition-all duration-300 hover:scale-110",
           isMobile && "h-8 w-8",
           className
         )}
       >
-        <Paperclip className={cn("w-4 h-4", isMobile && "w-3.5 h-3.5")} />
+        {/* Button ripple effect */}
+        <div className={cn(
+          "absolute inset-0 bg-primary/20 rounded-full",
+          "scale-0 group-hover:scale-100 transition-transform duration-300"
+        )} />
+        
+        <Paperclip className={cn(
+          "relative z-10 transition-all duration-300",
+          "group-hover:rotate-12",
+          isMobile ? "w-3.5 h-3.5" : "w-4 h-4"
+        )} />
       </Button>
 
       {/* Hidden file input */}

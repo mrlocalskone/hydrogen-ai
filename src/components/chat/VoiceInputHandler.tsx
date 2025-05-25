@@ -15,13 +15,25 @@ export const VoiceInputHandler: React.FC<VoiceInputHandlerProps> = ({
   className
 }) => {
   return (
-    <AIVoiceInput
-      onTextCapture={onTextCapture}
-      className={cn(
-        "shrink-0 touch-target",
-        isMobile && "h-8 w-8",
-        className
-      )}
-    />
+    <div className={cn(
+      "relative group",
+      className
+    )}>
+      {/* Voice input glow effect */}
+      <div className={cn(
+        "absolute inset-0 rounded-full bg-primary/20",
+        "scale-0 group-hover:scale-110 transition-all duration-300",
+        "animate-pulse opacity-0 group-hover:opacity-100"
+      )} />
+      
+      <AIVoiceInput
+        onTextCapture={onTextCapture}
+        className={cn(
+          "relative z-10 transition-all duration-300",
+          "hover:scale-110 active:scale-95",
+          isMobile && "h-8 w-8"
+        )}
+      />
+    </div>
   );
 };
