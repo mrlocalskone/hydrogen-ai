@@ -48,9 +48,9 @@ export function parseAtomCommand(message: string): AtomCommand | null {
       message.substring(5).trim();
     return { type: 'pdfsummarizer', params };
   } else if (message.startsWith('/diagram') || message.startsWith('/mermaid')) {
-    const params = message.startsWith('/diagram') ? 
-      message.substring(9).trim() : 
-      message.substring(9).trim();
+    const params = message.startsWith('/diagram') ?
+      message.substring(9).trim() :
+      message.substring(8).trim();
     return { type: 'diagram', params };
   }
   return null;
