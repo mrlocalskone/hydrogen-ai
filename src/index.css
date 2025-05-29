@@ -92,8 +92,8 @@
 
 /* Custom colors */
 :root {
-  --gemini-yellow: #fbbc04;
-  --gemini-purple: #a142f4;
+  --gemini-yellow: #10a37f;
+  --gemini-purple: #10a37f;
 }
 
 @layer base {
