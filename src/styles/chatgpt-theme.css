@@ -3,75 +3,75 @@
 
 /* Dark theme - similar to ChatGPT UI */
 .dark {
-  --background: 220 10% 8%;
+  --background: 235 11% 23%;
   --foreground: 0 0% 98%;
-  
-  --card: 220 10% 10%;
+
+  --card: 232 10% 30%;
   --card-foreground: 0 0% 98%;
-  
-  --popover: 220 10% 8%;
+
+  --popover: 232 10% 30%;
   --popover-foreground: 0 0% 98%;
-  
-  --primary: 260 85% 65%;
+
+  --primary: 165 82% 35%;
   --primary-foreground: 0 0% 100%;
-  
-  --secondary: 220 10% 16%;
+
+  --secondary: 235 11% 20%;
   --secondary-foreground: 0 0% 98%;
-  
-  --muted: 220 10% 16%;
+
+  --muted: 235 11% 20%;
   --muted-foreground: 0 0% 70%;
-  
-  --accent: 260 10% 15%;
+
+  --accent: 235 11% 28%;
   --accent-foreground: 0 0% 98%;
-  
+
   --destructive: 0 50% 45%;
   --destructive-foreground: 0 0% 98%;
-  
-  --border: 220 10% 16%;
-  --input: 220 10% 16%;
-  --ring: 260 85% 65%;
 
-  --sidebar: 220 10% 9%;
-  --sidebar-border: 220 10% 14%;
-  --sidebar-foreground: 0 0% 90%;
-  --sidebar-accent: 220 10% 14%;
+  --border: 235 11% 30%;
+  --input: 235 11% 30%;
+  --ring: 165 82% 35%;
+
+  --sidebar: 235 11% 20%;
+  --sidebar-border: 235 11% 28%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-accent: 235 11% 28%;
   --sidebar-accent-foreground: 0 0% 98%;
 }
 
 /* Light theme - lighter version of ChatGPT UI */
 .light {
-  --background: 200 20% 98%;
+  --background: 0 0% 100%;
   --foreground: 220 10% 10%;
-  
+
   --card: 0 0% 100%;
   --card-foreground: 220 10% 10%;
-  
+
   --popover: 0 0% 100%;
   --popover-foreground: 220 10% 10%;
-  
-  --primary: 260 85% 50%;
+
+  --primary: 165 82% 35%;
   --primary-foreground: 0 0% 100%;
-  
-  --secondary: 220 5% 90%;
+
+  --secondary: 0 0% 97%;
   --secondary-foreground: 220 10% 10%;
-  
-  --muted: 220 5% 90%;
+
+  --muted: 0 0% 97%;
   --muted-foreground: 220 10% 40%;
-  
-  --accent: 260 10% 90%;
-  --accent-foreground: 260 10% 40%;
-  
+
+  --accent: 165 10% 90%;
+  --accent-foreground: 165 30% 30%;
+
   --destructive: 0 60% 50%;
   --destructive-foreground: 0 0% 100%;
-  
-  --border: 220 15% 85%;
-  --input: 220 15% 85%;
-  --ring: 260 85% 50%;
 
-  --sidebar: 220 20% 97%;
-  --sidebar-border: 220 15% 85%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 165 82% 35%;
+
+  --sidebar: 0 0% 100%;
+  --sidebar-border: 0 0% 90%;
   --sidebar-foreground: 220 10% 10%;
-  --sidebar-accent: 220 15% 92%;
+  --sidebar-accent: 0 0% 95%;
   --sidebar-accent-foreground: 220 10% 10%;
 }
 
