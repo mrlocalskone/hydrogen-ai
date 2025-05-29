@@ -3,7 +3,7 @@
 <div align="center">
   <img src="public/logo.png" alt="HydroGen AI Logo" width="200"/>
   <p><em>Transforming how people access and interact with information</em></p>
-  <a href="app/index.html" target="_blank">
+  <a href="index.html" target="_blank">
     <img src="https://img.shields.io/badge/Launch%20App-Click%20Here-blue?style=for-the-badge" alt="Launch App">
   </a>
 </div>
