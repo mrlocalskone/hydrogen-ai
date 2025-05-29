@@ -49,7 +49,7 @@ export const getStoredConversations = (): Conversation[] => {
   }
 };
 
-// Create a new conversation with welcome message
+// Create a new conversation with a welcome message
 export const createInitialConversation = (): Conversation => {
   const now = new Date();
   return {
